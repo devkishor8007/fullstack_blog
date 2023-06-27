@@ -3,6 +3,8 @@
 import Input from '@/components/input';
 import { useFormik } from 'formik';
 import * as Yup from "yup";
+import {signIn} from "next-auth/react"
+import { useRouter } from 'next/navigation';
 
 const LoginSchema = Yup.object().shape({
     email: Yup.string()
@@ -14,6 +16,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 export default function Register() {
+    const router = useRouter()
     const formik = useFormik({
         initialValues: {
             password: '',
@@ -22,6 +25,20 @@ export default function Register() {
         validationSchema: LoginSchema,
         onSubmit: (values) => {
             console.log(values, "values");
+
+            signIn('credentials', {
+                ...values,
+                redirect: false
+            }).then((cb)=> {
+                if(cb?.ok) {
+                    router.refresh()
+                }
+
+                if(cb?.error) {
+                    throw new Error('wrong credentials')
+                  }
+            })
+            router.push('/')
 
         },
     });

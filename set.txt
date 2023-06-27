@@ -3,3 +3,9 @@ npm i @prisma/client prisma
 
 npx prisma init
  npx prisma migrate dev
+
+  npm i -D @types/bcrypt 
+  npm i bcrypt
+  npm i axios
+
+  npm i next-auth react-icons @next-auth/prisma-adapter

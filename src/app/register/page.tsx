@@ -1,7 +1,9 @@
 "use client"
 
 import Input from '@/components/input';
+import axios from 'axios';
 import { useFormik } from 'formik';
+import { useRouter } from 'next/navigation';
 import * as Yup from "yup";
 
 const RegisterSchema = Yup.object().shape({
@@ -19,6 +21,7 @@ const RegisterSchema = Yup.object().shape({
 });
 
 export default function Register() {
+    const router = useRouter()
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -28,7 +31,15 @@ export default function Register() {
         validationSchema: RegisterSchema,
         onSubmit: (values) => {
             console.log(values, "values");
-
+            axios.post('/api/register', values)
+            .then(()=> {
+                setTimeout(()=> {
+                    router.push('/login')
+                })
+            }).catch((error: any)=> {
+                console.log(error);
+                
+            })
         },
     });
     return (
