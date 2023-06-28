@@ -11,7 +11,7 @@ export const Navbar = ({currentUser}: any) => {
 
             <div className="flex gap-4">
                 <Link href='/'>Home</Link>
-             { currentUser && <Link href='/blog'>Blog</Link>}
+             { currentUser && <Link href='/createblogs'>Blog</Link>}
                 
                 {
                     currentUser ? <button onClick={()=> signOut()}>Signout</button> : <Link href='/register'>Register</Link>
