@@ -25,7 +25,7 @@ const Page = () => {
       title: '',
       description: '',
     },
-    // validationSchema: BlogSchema,
+    validationSchema: BlogSchema,
     onSubmit: (values) => {
       console.log(values, "values");
       axios.post('/api/blog', values)
