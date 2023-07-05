@@ -27,15 +27,13 @@ const Page = () => {
     },
     validationSchema: BlogSchema,
     onSubmit: (values) => {
-      console.log(values, "values");
       axios.post('/api/blog', values)
         .then(() => {
           setTimeout(() => {
             router.push('/')
+            router.refresh()
           })
         }).catch((error: any) => {
-          console.log(error);
-
         })
     },
   });
@@ -43,7 +41,6 @@ const Page = () => {
     <div className=''>
       <form onSubmit={formik.handleSubmit}>
         <div className='flex flex-col justify-center text-xs md:text-sm h-[450px] w-[200px] md:w-[350px] mx-auto gap-2 mb-[200px]'>
-
           <div>
             <label htmlFor="title">title</label>
 
@@ -60,7 +57,7 @@ const Page = () => {
             )}
           </div>
 
-          <button className='bg-cyan-400 w-1/2 justify-center p-2 ml-auto mr-auto mt-2 rounded-2xl hover:text-white hover:bg-black' type="submit">Signup</button>
+          <button className='bg-cyan-400 w-1/2 justify-center p-2 ml-auto mr-auto mt-2 rounded-2xl hover:text-white hover:bg-black' type="submit">Create</button>
         </div>
       </form>
     </div>

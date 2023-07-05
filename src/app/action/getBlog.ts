@@ -10,7 +10,6 @@ export default async function getBlogs(createdBy: string) {
                 createdAt: 'desc'
             }
         })
-        console.log(blog, "blog");
 
         return blog
     }

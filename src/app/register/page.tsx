@@ -30,16 +30,13 @@ export default function Register() {
         },
         validationSchema: RegisterSchema,
         onSubmit: (values) => {
-            console.log(values, "values");
             axios.post('/api/register', values)
-            .then(()=> {
-                setTimeout(()=> {
-                    router.push('/login')
+                .then(() => {
+                    setTimeout(() => {
+                        router.push('/login')
+                    })
+                }).catch((error: any) => {
                 })
-            }).catch((error: any)=> {
-                console.log(error);
-                
-            })
         },
     });
     return (
@@ -71,6 +68,7 @@ export default function Register() {
                     </div>
 
                     <button className='bg-cyan-400 w-1/2 justify-center p-2 ml-auto mr-auto mt-2 rounded-2xl hover:text-white hover:bg-black' type="submit">Signup</button>
+                    <div className='mt-2'>If you have an account? <span className='text-blue-600 font-medium'> <a href="/login">Login</a> </span></div>
                 </div>
             </form>
         </div>
