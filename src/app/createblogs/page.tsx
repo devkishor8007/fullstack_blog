@@ -1,20 +1,10 @@
 "use client"
 
-import * as Yup from "yup";
 import { useFormik } from 'formik';
 import Input from "@/components/input";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-
-const BlogSchema = Yup.object().shape({
-  title: Yup.string()
-    .min(2, 'Too Short!')
-    .max(700, 'Too Long!')
-    .matches(/^[A-Za-z0-9]+$/, 'Name must only contain letters and numbers')
-    .required('Required'),
-  description: Yup.string()
-    .required('Required'),
-});
+import { BlogSchema } from '@/helper/validator.schema';
 
 
 

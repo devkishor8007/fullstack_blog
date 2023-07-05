@@ -1,19 +1,10 @@
 "use client"
 
 import Input from '@/components/input';
+import { LoginSchema } from '@/helper/validator.schema';
 import { useFormik } from 'formik';
-import * as Yup from "yup";
 import { signIn } from "next-auth/react"
 import { useRouter } from 'next/navigation';
-
-const LoginSchema = Yup.object().shape({
-    email: Yup.string()
-        .email('Invalid email')
-        .required('Required'),
-    password: Yup.string()
-        .min(6, 'Too Short!')
-        .required('Required'),
-});
 
 export default function Register() {
     const router = useRouter()
